@@ -33,12 +33,12 @@ class GenericActionBuilder[V <: Message](
     import ctx._
 
     val requestProtocol = protocolComponentsRegistry.components(requestActionBuilder.key)
-    val responseProtocol = protocolComponentsRegistry.components(requestActionBuilder.key)
+    val responseProtocol = protocolComponentsRegistry.components(responseActionBuilder.key)
 
     val publisher = requestActionBuilder.build(ctx, requestProtocol)
     logger.debug(s"Publisher ${publisher.name} has been instantiated")
 
-    val consumer = requestActionBuilder.build(ctx, responseProtocol)
+    val consumer = responseActionBuilder.build(ctx, responseProtocol)
     logger.debug(s"Consumer ${consumer.name} has been instantiated")
 
     system.registerOnTermination {
