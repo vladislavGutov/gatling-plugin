@@ -17,5 +17,5 @@ object JmsResponseBuilder {
 }
 
 trait JsmBuilderImplicits {
-  def toActionBuilder(builder: JmsResponseBuilder): JmsResponseActionBuilder = builder.build
+  implicit def toActionBuilder(builder: JmsResponseBuilder): JmsResponseActionBuilder = builder.build
 }
